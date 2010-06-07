@@ -2,11 +2,13 @@ package Dist::Zilla::Plugin::VersionFromPrev::Finder::Git::LastVersion;
 
 use 5.010;
 use Moose;
+use Cwd;
+use Git::Wrapper;
 
 sub last_version {
-    chomp(my $last = qx[ git tag -l | sort -nr | head -n1 ]);
-
-    return $last eq '' ? undef : $last;
+    my $git = Git::Wrapper->new(getcwd());
+    my (@tags) = sort { -( $a <=> $b ) } $git->tag(qw( -l ));
+    return $tags[0] eq '' ? undef : $tags[0];
 }
 
 __PACKAGE__->meta->make_immutable;

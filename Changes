@@ -2,6 +2,9 @@ Revision history for Dist::Zilla::Plugin::VersionFromPrev
 
 {{$NEXT}}
 
+      Use Git::Wrapper + Perl instead of unix shell calls for
+      Git::LastVersion. ( Kent Fredric )
+
 0.04 2010-05-01 21:27:09
 
     - Re-release due to Makefile.PL breakage caused by Dist::Zilla
